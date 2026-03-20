@@ -1,0 +1,14 @@
+@baseUrl = http://localhost:8000/api/v1
+@token = 9|MlrPmU9NvTmmQ4tzoPHR29OkRleeNMLSxOE4Tcgad3aee94d
+
+### Mes favoris
+GET {{baseUrl}}/favorites
+Authorization: Bearer {{token}}
+
+### Ajouter une ferme aux favoris
+POST {{baseUrl}}/favorites/1
+Authorization: Bearer {{token}}
+
+### Retirer une ferme des favoris
+DELETE {{baseUrl}}/favorites/1
+Authorization: Bearer {{token}}

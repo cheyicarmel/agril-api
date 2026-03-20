@@ -18,14 +18,14 @@ POST {{baseUrl}}/auth/login
 Content-Type: {{contentType}}
 
 {
-    "email": "test11@agril.bj",
+    "email": "cocotier@agril.bj",
     "password": "password"
 }
 
 ### Profil connecté
 GET {{baseUrl}}/auth/me
-Authorization: Bearer 6|jb1zv8neQUVGYmPAUROuDrLPOlfafcilCGTAwveW3cece740
+Authorization: Bearer 8|Vig96ntdeAhypIUiVvz2Nirdga0QY0QW3kSyzHMK43236212
 
 ### Déconnexion
 POST {{baseUrl}}/auth/logout
-Authorization: Bearer 5|lvod08CszZD51dTFxVybtjrQtlmPtFr5S7DF19XZdd129f4e
+Authorization: Bearer 8|Vig96ntdeAhypIUiVvz2Nirdga0QY0QW3kSyzHMK43236212

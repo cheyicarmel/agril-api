@@ -18,7 +18,8 @@ class ConversationResource extends JsonResource
             'last_message' => new MessageResource($this->whenLoaded('lastMessage')),
             'unread_count' => $this->whenLoaded(
                 'messages',
-                fn() => $this->messages->where('is_read', false)->count()
+                fn() => $this->messages->where('is_read', false)->count(),
+                0
             ),
         ];
     }

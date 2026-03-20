@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:8000/api/v1
+@token = 9|MlrPmU9NvTmmQ4tzoPHR29OkRleeNMLSxOE4Tcgad3aee94d
+
+### Démarrer ou retrouver une conversation avec une ferme
+POST {{baseUrl}}/conversations/find-or-create
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "farm_id": 1
+}
+
+### Mes conversations
+GET {{baseUrl}}/conversations
+Authorization: Bearer {{token}}
+
+### Détail d'une conversation
+GET {{baseUrl}}/conversations/1
+Authorization: Bearer {{token}}
+
+### Envoyer un message
+POST {{baseUrl}}/conversations/1/messages
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "content": "Bonjour, est-ce que vos ignames sont encore disponibles ?"
+}

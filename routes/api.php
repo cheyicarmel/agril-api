@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\API\V1\ConversationController;
 use App\Http\Controllers\API\V1\FarmController;
+use App\Http\Controllers\API\V1\FavoriteController;
+use App\Http\Controllers\API\V1\MessageController;
+use App\Http\Controllers\API\V1\ProductController;
 use App\Http\Controllers\API\V1\StockController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +20,8 @@ Route::prefix('v1')->group(function () {
             Route::get('/me', [AuthController::class, 'me']);
         });
     });
+
+    Route::get('/products', [ProductController::class, 'index']);
 
     Route::prefix('farms')->group(function () {
         Route::get('/', [FarmController::class, 'index']);
@@ -40,6 +46,23 @@ Route::prefix('v1')->group(function () {
             Route::patch('/{stock}/status', [StockController::class, 'updateStatus']);
             Route::delete('/{stock}', [StockController::class, 'destroy']);
         });
+    });
+
+    Route::middleware('auth:sanctum')->group(function () {
+
+        Route::prefix('conversations')->group(function () {
+            Route::get('/', [ConversationController::class, 'index']);
+            Route::post('/find-or-create', [ConversationController::class, 'findOrCreate']);
+            Route::get('/{conversation}', [ConversationController::class, 'show']);
+            Route::post('/{conversation}/messages', [MessageController::class, 'store']);
+        });
+
+        Route::prefix('favorites')->group(function () {
+            Route::get('/', [FavoriteController::class, 'index']);
+            Route::post('/{farm}', [FavoriteController::class, 'store']);
+            Route::delete('/{farm}', [FavoriteController::class, 'destroy']);
+        });
+
     });
 
 });

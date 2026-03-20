@@ -13,7 +13,7 @@ class MessageResource extends JsonResource
             'id' => $this->id,
             'content' => $this->content,
             'is_read' => $this->is_read,
-            'created_at' => $this->created_at->toDateTimeString(),
+            'created_at' => $this->created_at?->toDateTimeString(),
             'sender' => new UserResource($this->whenLoaded('sender')),
         ];
     }

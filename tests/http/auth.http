@@ -24,7 +24,7 @@ Content-Type: {{contentType}}
 
 ### Profil connecté
 GET {{baseUrl}}/auth/me
-Authorization: Bearer 5|lvod08CszZD51dTFxVybtjrQtlmPtFr5S7DF19XZdd129f4e
+Authorization: Bearer 6|jb1zv8neQUVGYmPAUROuDrLPOlfafcilCGTAwveW3cece740
 
 ### Déconnexion
 POST {{baseUrl}}/auth/logout

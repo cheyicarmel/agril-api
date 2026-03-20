@@ -1,0 +1,41 @@
+@baseUrl = http://localhost:8000/api/v1
+@token = 6|jb1zv8neQUVGYmPAUROuDrLPOlfafcilCGTAwveW3cece740
+
+### Liste des stocks disponibles
+GET {{baseUrl}}/stocks
+
+### Filtrer par produit
+GET {{baseUrl}}/stocks?product_id=1
+
+### Filtrer par prix max et quantité min
+GET {{baseUrl}}/stocks?max_price=400&min_quantity=100
+
+### Détail d'un stock
+GET {{baseUrl}}/stocks/1
+
+### Mes stocks (authentifié)
+GET {{baseUrl}}/stocks/user/my-stocks
+Authorization: Bearer {{token}}
+
+### Publier un stock
+POST {{baseUrl}}/stocks
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "farm_id": 4,
+    "product_id": 1,
+    "quantity": 200,
+    "unit": "kg",
+    "price_per_unit": 320,
+    "available_from": "2026-04-01"
+}
+
+### Changer le statut d'un stock
+PATCH {{baseUrl}}/stocks/8/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "status": "reserved"
+}

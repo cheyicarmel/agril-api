@@ -1,0 +1,41 @@
+@baseUrl = http://localhost:8000/api/v1
+@token = 6|jb1zv8neQUVGYmPAUROuDrLPOlfafcilCGTAwveW3cece740
+
+### Liste des fermes
+GET {{baseUrl}}/farms
+
+### Liste avec filtre département
+GET {{baseUrl}}/farms?department=Zou
+
+### Liste avec recherche géographique (rayon 100km autour de Cotonou)
+GET {{baseUrl}}/farms?lat=6.3703&lng=2.3912&radius=100
+
+### Détail d'une ferme
+GET {{baseUrl}}/farms/1
+
+### Mes fermes (authentifié)
+GET {{baseUrl}}/farms/user/my-farms
+Authorization: Bearer {{token}}
+
+### Créer une ferme (authentifié agriculteur)
+POST {{baseUrl}}/farms
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Ma Nouvelle Ferme",
+    "description": "Une belle exploitation test.",
+    "latitude": 6.3703,
+    "longitude": 2.3912,
+    "city": "Cotonou",
+    "department": "Littoral"
+}
+
+### Modifier une ferme
+PATCH {{baseUrl}}/farms/4
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "description": "Description mise à jour."
+}

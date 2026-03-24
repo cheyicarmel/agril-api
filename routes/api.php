@@ -8,6 +8,7 @@ use App\Http\Controllers\API\V1\MessageController;
 use App\Http\Controllers\API\V1\ProductController;
 use App\Http\Controllers\API\V1\StockController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\V1\ProfileController;
 
 Route::prefix('v1')->group(function () {
 
@@ -19,6 +20,10 @@ Route::prefix('v1')->group(function () {
             Route::post('/logout', [AuthController::class, 'logout']);
             Route::get('/me', [AuthController::class, 'me']);
         });
+    });
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::patch('/profile', [ProfileController::class, 'update']);
     });
 
     Route::get('/products', [ProductController::class, 'index']);

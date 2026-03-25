@@ -8,6 +8,7 @@ use App\Http\Requests\Stock\UpdateStockRequest;
 use App\Http\Resources\StockResource;
 use App\Models\Farm;
 use App\Models\Stock;
+use App\Services\ImageUploadService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -57,8 +58,16 @@ class StockController extends Controller
             ], 403);
         }
 
-        $stock = Stock::create($request->validated());
+        $data = $request->validated();
 
+        if ($request->hasFile('image')) {
+            $imageService = new ImageUploadService();
+            $data['photo_url'] = $imageService->upload($request->file('image'), 'agril/stocks');
+        }
+
+        unset($data['image']);
+
+        $stock = Stock::create($data);
         $stock->load(['farm', 'product']);
 
         return response()->json([
@@ -103,6 +112,11 @@ class StockController extends Controller
             return response()->json([
                 'message' => 'Action non autorisée.',
             ], 403);
+        }
+
+        if ($stock->photo_url) {
+            $imageService = new ImageUploadService();
+            $imageService->delete($stock->photo_url);
         }
 
         $stock->delete();

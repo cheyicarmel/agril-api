@@ -21,7 +21,7 @@ class StoreFarmRequest extends FormRequest
             'address' => ['nullable', 'string', 'max:500'],
             'city' => ['required', 'string', 'max:100'],
             'department' => ['required', 'string', 'max:100'],
-            'photo_url' => ['nullable', 'string', 'url'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:5120'],
         ];
     }
 

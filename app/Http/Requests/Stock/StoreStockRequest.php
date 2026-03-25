@@ -20,7 +20,7 @@ class StoreStockRequest extends FormRequest
             'unit' => ['required', 'string', 'max:50'],
             'price_per_unit' => ['required', 'numeric', 'min:1'],
             'available_from' => ['required', 'date', 'after_or_equal:today'],
-            'photo_url' => ['nullable', 'string', 'url'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:5120'],
             'notes' => ['nullable', 'string', 'max:500'],
         ];
     }

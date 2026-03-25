@@ -7,6 +7,7 @@ use App\Http\Requests\Farm\StoreFarmRequest;
 use App\Http\Requests\Farm\UpdateFarmRequest;
 use App\Http\Resources\FarmResource;
 use App\Models\Farm;
+use App\Services\ImageUploadService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -65,8 +66,17 @@ class FarmController extends Controller
 
     public function store(StoreFarmRequest $request): JsonResponse
     {
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $imageService = new ImageUploadService();
+            $data['photo_url'] = $imageService->upload($request->file('image'), 'agril/farms');
+        }
+
+        unset($data['image']);
+
         $farm = Farm::create([
-            ...$request->validated(),
+            ...$data,
             'user_id' => $request->user()->id,
         ]);
 

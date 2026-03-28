@@ -18,7 +18,7 @@ POST {{baseUrl}}/auth/login
 Content-Type: {{contentType}}
 
 {
-    "email": "test11@agril.bj",
+    "email": "seraphin@agril.bj",
     "password": "password"
 }
 
@@ -28,4 +28,4 @@ Authorization: Bearer 8|Vig96ntdeAhypIUiVvz2Nirdga0QY0QW3kSyzHMK43236212
 
 ### Déconnexion
 POST {{baseUrl}}/auth/logout
-Authorization: Bearer 8|Vig96ntdeAhypIUiVvz2Nirdga0QY0QW3kSyzHMK43236212
+Authorization: Bearer 21|ClQYqmm5V4kVufGjVoihWYEAggv12f521pZw8KC5be5a90ca
